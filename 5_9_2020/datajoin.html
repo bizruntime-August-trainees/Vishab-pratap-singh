@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js">
+    </script>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="list">
+        <li></li>
+        <li></li>
+    </ul>
+    <input type="button" name="remove" value="Remove fifth value" onclick="javascript:remove()" />
+    <script>
+        d3.select("#list").selectAll("li")
+            .data([10, 20, 30, 25, 15])
+            .text(function(d) {
+                return "It is a pre-existing item and its value is " + d;
+            })
+            .enter()
+            .append("li")
+            .text(function(d) {
+                return "It is dynamically made item and its value is " + d;
+            });
+
+        function remove() {
+            d3.selectAll("li")
+                .data([10, 20, 30, 15])
+                .exit()
+                .remove()
+        }
+        d3.select("body").transition().style("background-color", "yellow");
+    </script>
+</body>
+
+</html>
